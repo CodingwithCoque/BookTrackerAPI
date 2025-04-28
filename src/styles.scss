@@ -1,0 +1,58 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+
+/* Custom theme variables */
+$body-bg: #212529;
+$body-color: #e9ecef;
+$theme-colors: (
+  "primary": #0d6efd,
+  "secondary": #6c757d,
+  "success": #198754,
+  "info": #0dcaf0,
+  "warning": #ffc107,
+  "danger": #dc3545,
+  "light": #f8f9fa,
+  "dark": #212529
+);
+
+/* Import Bootstrap */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* Global custom styles */
+body {
+  background-color: #121212;
+  color: #e9ecef;
+}
+
+/* Custom card styling */
+.card {
+  background-color: #212529;
+  border-color: #495057;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom form styling */
+.form-control {
+  background-color: #343a40;
+  color: #e9ecef;
+  border-color: #495057;
+  
+  &:focus {
+    background-color: #343a40;
+    color: #e9ecef;
+  }
+}
+
+/* Table styles */
+.table {
+  color: #e9ecef;
+}
+
+/* Button hover effects */
+.btn {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
