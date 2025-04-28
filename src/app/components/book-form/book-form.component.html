@@ -1,0 +1,63 @@
+<div class="container mt-4">
+    <div class="card bg-dark text-light border-secondary">
+      <div class="card-header bg-dark border-secondary">
+        <h2>{{ isEditMode ? 'Edit Book' : 'Add New Book' }}</h2>
+      </div>
+      <div class="card-body">
+        <div *ngIf="loading" class="text-center">
+          <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+  
+        <div *ngIf="submitError" class="alert alert-danger">
+          {{ submitError }}
+        </div>
+  
+        <form [formGroup]="bookForm" (ngSubmit)="onSubmit()" *ngIf="!loading">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control bg-dark text-light border-secondary" id="title" formControlName="title"
+              [ngClass]="{ 'is-invalid': submitted && formControls['title'].errors }">
+            <div *ngIf="submitted && formControls['title'].errors" class="invalid-feedback">
+              <div *ngIf="formControls['title'].errors['required']">Title is required</div>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" class="form-control bg-dark text-light border-secondary" id="author" formControlName="author"
+              [ngClass]="{ 'is-invalid': submitted && formControls['author'].errors }">
+            <div *ngIf="submitted && formControls['author'].errors" class="invalid-feedback">
+              <div *ngIf="formControls['author'].errors['required']">Author is required</div>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="genre" class="form-label">Genre</label>
+            <input type="text" class="form-control bg-dark text-light border-secondary" id="genre" formControlName="genre"
+              [ngClass]="{ 'is-invalid': submitted && formControls['genre'].errors }">
+            <div *ngIf="submitted && formControls['genre'].errors" class="invalid-feedback">
+              <div *ngIf="formControls['genre'].errors['required']">Genre is required</div>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="year_published" class="form-label">Year Published</label>
+            <input type="number" class="form-control bg-dark text-light border-secondary" id="year_published" formControlName="year_published"
+              [ngClass]="{ 'is-invalid': submitted && formControls['year_published'].errors }">
+            <div *ngIf="submitted && formControls['year_published'].errors" class="invalid-feedback">
+              <div *ngIf="formControls['year_published'].errors['required']">Year published is required</div>
+              <div *ngIf="formControls['year_published'].errors['min']">Year must be after 1000</div>
+              <div *ngIf="formControls['year_published'].errors['max']">Year cannot be in the future</div>
+            </div>
+          </div>
+  
+          <div class="d-flex">
+            <button type="submit" class="btn btn-success me-2">{{ isEditMode ? 'Update Book' : 'Add Book' }}</button>
+            <a [routerLink]="['/books']" class="btn btn-secondary">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

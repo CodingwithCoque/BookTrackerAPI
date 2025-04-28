@@ -1,0 +1,56 @@
+<div class="container mt-4">
+    <div class="card bg-dark text-light border-secondary">
+      <div class="card-header bg-dark border-secondary d-flex justify-content-between align-items-center">
+        <h2>Book Collection</h2>
+        <a routerLink="/books/new" class="btn btn-success">Add New Book</a>
+      </div>
+      <div class="card-body">
+        <div *ngIf="loading" class="text-center">
+          <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+  
+        <div *ngIf="error" class="alert alert-danger">
+          {{ error }}
+        </div>
+  
+        <div *ngIf="!loading && !error">
+          <div *ngIf="books.length === 0" class="alert alert-secondary">
+            <i class="bi bi-info-circle me-2"></i> No books found. Add some books to your collection!
+          </div>
+  
+          <div *ngIf="books.length > 0" class="table-responsive">
+            <table class="table table-dark table-hover border-secondary">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Genre</th>
+                  <th>Year</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let book of books">
+                  <td>{{ book.id }}</td>
+                  <td>{{ book.title }}</td>
+                  <td>{{ book.author }}</td>
+                  <td>{{ book.genre }}</td>
+                  <td>{{ book.year_published }}</td>
+                  <td>
+                    <div class="btn-group">
+                      <a [routerLink]="['/books', book.id]" class="btn btn-sm btn-info me-1">View</a>
+                      <a [routerLink]="['/books', book.id, 'edit']" class="btn btn-sm btn-primary me-1">Edit</a>
+                      <button (click)="deleteBook(book.id!)" class="btn btn-sm btn-danger">Delete</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
